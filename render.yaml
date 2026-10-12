@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: silas-xiaohongshu
+    runtime: docker
+    plan: starter
+    autoDeployTrigger: commit
+    healthCheckPath: /health
+    envVars:
+      - key: AUTH_TOKEN
+        sync: false
+      - key: COOKIES_PATH
+        value: /app/data/cookies.json
+      - key: HOME
+        value: /app/data/home
+      - key: XDG_CONFIG_HOME
+        value: /app/data/config
+      - key: TZ
+        value: Asia/Shanghai
+    disk:
+      name: xiaohongshu-data
+      mountPath: /app/data
+      sizeGB: 1
